@@ -32,7 +32,7 @@ const HotelLeftColumn = styled.div`
     justify-content: flex-start;
 `
 
-const Span = styled.div`
+const TextRow = styled.div`
     display: flex;
     flex-direction: row;
 `
@@ -47,9 +47,9 @@ const Hotel = ({ hotel }) => {
             <h3>{hotel.name}</h3>
             <p>{hotel.city}, {hotel.country}</p>
 
-            <Span><p>Available: </p> {hotel.isAvailable == true ? <p> Yes</p> : <p> No</p>}</Span>
+            <TextRow><p>Available: </p> {hotel.isAvailable == true ? <p> Yes</p> : <p> No</p>}</TextRow>
 
-            <Span><p>Swimming pool: </p> {hotel.hasSwimmingPool == true ? <p> Yes</p> : <p> No</p>}</Span>
+            <TextRow><p>Swimming pool: </p> {hotel.hasSwimmingPool == true ? <p> Yes</p> : <p> No</p>}</TextRow>
 
           </HotelMiddleColumn>
         

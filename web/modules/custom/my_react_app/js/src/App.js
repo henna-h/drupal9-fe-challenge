@@ -1,5 +1,26 @@
 import React, { useState } from 'react';
 import Hotel from './components/Hotel'
+import styled from 'styled-components'
+
+const FilterRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+    max-width: 19em;
+`
+const CountryFilter = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`
+
+const AvailabilityFilter = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`
 
 const App = () => {
 
@@ -38,27 +59,33 @@ const App = () => {
 
   return (
     <div>
-      <select onChange={handleCountryChange}>
-        <option value={allHotelCountries} selected="selected"></option>
-        {allHotelCountries.map(hotelCountry=>(
-          <option value={[hotelCountry]}>{hotelCountry}</option>
-        ))}
-      </select>
 
-      <input 
-        type="checkbox"
-        id="available"
-        name="available"
-        checked={availabilityChecked}
-        onChange={handleAvailabilityChange}
-      >
-      </input>
-      <label for="available">Is available</label>
+      <FilterRow>
+        <CountryFilter>
+            <label for="country">Filter by Country</label>
+            <select id="country" onChange={handleCountryChange}>
+                <option value={allHotelCountries} selected="selected"></option>
+                {allHotelCountries.map(hotelCountry=>(
+                <option value={[hotelCountry]}>{hotelCountry}</option>
+                ))}
+            </select>
+        </CountryFilter>
+        <AvailabilityFilter>
+            <input 
+                type="checkbox"
+                id="available"
+                name="available"
+                checked={availabilityChecked}
+                onChange={handleAvailabilityChange}
+            >
+            </input>
+            <label for="available">Is available</label>
+        </AvailabilityFilter>
+      </FilterRow>
 
       {hotels.filter(hotel => filterFunction(hotel)).map(hotel => (
         <div key={hotel.id}>
           <Hotel hotel={hotel} />
-
         </div>
       ))}
     </div>
