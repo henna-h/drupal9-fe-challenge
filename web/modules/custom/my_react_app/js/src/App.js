@@ -5,16 +5,18 @@ const App = () => {
 
   const allHotels = drupalSettings.hotels
 
-  const hotelCountries = Array.from(new Set(allHotels.map(hotel => hotel.country)))
+  const allHotelCountries = Array.from(new Set(allHotels.filter(hotel => hotel.country).map(hotel => hotel.country)))
 
   const [hotels, setHotels] = useState(allHotels)
-  const [countries, setCountries] = useState(hotelCountries)
+  const [countries, setCountries] = useState(allHotelCountries)
   const [availabilityChecked, setAvailabilityChecked] = useState(false)
+
+  console.log(countries)
 
   const handleCountryChange = e => {
     
     console.log(e)
-    setCountries([e.target.value])
+    setCountries(e.target.value)
   }
 
   const handleAvailabilityChange = () => {
@@ -37,8 +39,8 @@ const App = () => {
   return (
     <div>
       <select onChange={handleCountryChange}>
-        <option value={hotelCountries} selected="selected"></option>
-        {hotelCountries.map(hotelCountry=>(
+        <option value={allHotelCountries} selected="selected"></option>
+        {allHotelCountries.map(hotelCountry=>(
           <option value={[hotelCountry]}>{hotelCountry}</option>
         ))}
       </select>
