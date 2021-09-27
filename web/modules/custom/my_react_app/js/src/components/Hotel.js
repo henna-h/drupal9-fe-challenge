@@ -1,14 +1,24 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const HotelBox = styled.div`
-    background: Gainsboro;
-    height: 17em;
+    background: WhiteSmoke;
+    height: auto;
     margin-bottom: 2em;
     padding: 1em;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between
+    max-width: 100em;
+
+    @media only screen and (max-width: 600px) {
+        flex-direction: column;
+    }
+
+    @media only screen and (min-width: 600px) {
+        flex-direction: row;
+    }
+
+    
+    justify-content: space-between;
 `
 
 const HotelImage = styled.img`
@@ -18,18 +28,15 @@ const HotelImage = styled.img`
     float: left;
 `
 
-const HotelMiddleColumn = styled.div`
+const Column = styled.div`
     float: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-center;
+    justify-content: flex-start;
 `
 
-const HotelLeftColumn = styled.div`
-    float: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+const ColumnItem = styled.div`
+    
 `
 
 const TextRow = styled.div`
@@ -37,25 +44,39 @@ const TextRow = styled.div`
     flex-direction: row;
 `
 
+const TextWithLeftMargin = styled.p`
+    margin-right: 0.5em;
+`
+
 const Hotel = ({ hotel }) => {
 
     return (
         <HotelBox key={hotel.id}>
-          <HotelImage src={hotel.imageUrl} alt={hotel.name} />
+            
+          <Column>
+            <HotelImage src={hotel.imageUrl} alt={hotel.name} />
+          </Column>
 
-          <HotelMiddleColumn>
-            <h3>{hotel.name}</h3>
-            <p>{hotel.city}, {hotel.country}</p>
+          <Column>
+            <ColumnItem>
+                <h3>{hotel.name}</h3>
+                <p>{hotel.city}, {hotel.country}</p>
+            </ColumnItem>
 
-            <TextRow><p>Available: </p> {hotel.isAvailable == true ? <p> Yes</p> : <p> No</p>}</TextRow>
+            <ColumnItem>
+                <TextRow>
+                    <TextWithLeftMargin>Available: </TextWithLeftMargin> {hotel.isAvailable == true ? <p> Yes</p> : <p> No</p>}
+                </TextRow>
+                <TextRow>
+                    <TextWithLeftMargin>Swimming pool: </TextWithLeftMargin> {hotel.hasSwimmingPool == true ? <p> Yes</p> : <p> No</p>}
+                </TextRow>
+            </ColumnItem>
 
-            <TextRow><p>Swimming pool: </p> {hotel.hasSwimmingPool == true ? <p> Yes</p> : <p> No</p>}</TextRow>
-
-          </HotelMiddleColumn>
+          </Column>
         
-          <HotelLeftColumn>
-            <h2>{hotel.price}</h2>
-          </HotelLeftColumn>
+          <Column>
+            <h3>{hotel.price}</h3>
+          </Column>
 
         </HotelBox>
     )

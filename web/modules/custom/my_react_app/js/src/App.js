@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import Hotel from './components/Hotel'
 import styled from 'styled-components'
 
+const Container = styled.div`
+    width: 100%
+`
+
 const FilterRow = styled.div`
     display: flex;
     flex-direction: row;
