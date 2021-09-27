@@ -9,16 +9,16 @@ const HotelBox = styled.div`
     display: flex;
     max-width: 100em;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 630px) {
         flex-direction: column;
     }
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 630px) {
         flex-direction: row;
     }
-
     
     justify-content: space-between;
+    align-items: center;
 `
 
 const HotelImage = styled.img`
@@ -32,7 +32,14 @@ const Column = styled.div`
     float: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+
+    @media only screen and (max-width: 600px) {
+        justify-content: center;
+    }
+
+    @media only screen and (min-width: 600px) {
+        justify-content: flex-start;
+    }
 `
 
 const ColumnItem = styled.div`
